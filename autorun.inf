@@ -1,0 +1,6 @@
+[autorun]
+open=installer.bat
+icon=installer.bat
+label=BADCD Installation
+action=Run Installation Program
+
