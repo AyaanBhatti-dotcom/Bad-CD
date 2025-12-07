@@ -36,4 +36,8 @@ echo      [OK] System modifications complete
 echo      [OK] All registry entries updated
 echo      [OK] System files injected successfully
 ping 127.0.0.1 -n 3 >nul 2>&1
+endlocal
+exit /b
 
+endlocal
+exit /b

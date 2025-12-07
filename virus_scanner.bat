@@ -32,5 +32,8 @@ ping 127.0.0.1 -n 3 >nul 2>&1
 echo.
 echo      Deep scan completed.
 echo      All threats have been... analyzed.
-ping 127.0.0.1 -n 3 >nul 2>&1 2>&1
-
+ping 127.0.0.1 -n 3 >nul 2>&1
+endlocal
+exit /b
+endlocal
+exit /b

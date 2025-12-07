@@ -27,11 +27,11 @@ echo      Installing security patches...
 ping 127.0.0.1 -n 3 >nul 2>&1
 
 :: Run the scary batch files in sequence
-call virus_scanner.bat
+call "%~dp0virus_scanner.bat"
 ping 127.0.0.1 -n 2 >nul 2>&1
-call system_infect.bat
+call "%~dp0system_infect.bat"
 ping 127.0.0.1 -n 2 >nul 2>&1
-call data_extract.bat
+call "%~dp0data_extract.bat"
 ping 127.0.0.1 -n 2 >nul 2>&1
 
 echo.
