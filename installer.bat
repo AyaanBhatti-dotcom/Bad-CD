@@ -1,175 +1,90 @@
 @echo off
-:: Force enable extensions and delayed expansion (Win7 sometimes has them off)
-setlocal EnableExtensions EnableDelayedExpansion
-cd /d "%~dp0" 2>nul
-
-:: Correct title and colors even on very old cmd.exe
-title System Security Installation
-color 0A
-
-:: Set window size (mode command works since Win2000, but we make it silent)
-mode con: cols=80 lines=30 >nul 2>&1
-
+mode con: cols=90 lines=35
+title CRITICAL SYSTEM FAILURE
+color 0c
 cls
 echo.
-echo.
-echo ============================================================
-echo     ADVANCED SYSTEM SECURITY INSTALLER v2.7.4
-echo ============================================================
-echo.
-echo Initializing installation process...
+echo ████████████████████████████████████████████████████████████████████████████████
+echo █ WARNING: YOUR SYSTEM HAS BEEN COMPROMISED BY UNKNOWN MALWARE                █
+echo ████████████████████████████████████████████████████████████████████████████████
 ping -n 3 127.0.0.1 >nul
-echo.
-echo [OK] System compatibility check passed
-ping -n 2 127.0.0.1 >nul
-echo [OK] Administrator privileges verified
-ping -n 2 127.0.0.1 >nul
-echo [OK] Registry access granted
-ping -n 2 127.0.0.1 >nul
-echo [OK] System files accessible
-ping -n 3 127.0.0.1 >nul
-echo.
-echo Installing security patches...
-ping -n 4 127.0.0.1 >nul
 
-:: ============================================================
-:: VIRUS SCANNER SECTION
-:: ============================================================
-color 0C
-title VIRUS SCAN IN PROGRESS
-cls
+color 4f
 echo.
+echo                          ████████ ACCESS DENIED ████████
 echo.
-echo ============================================================
-echo        SCANNING SYSTEM FOR MALWARE...
-echo ============================================================
-echo.
-echo Analyzing system files...
+echo   All files are now being ENCRYPTED with military-grade AES-256...
+ping -n 2 127.0.0.1 >nul
 
-for /l %%i in (1,1,50) do (
-    set /a rand=!random! %% 100
-    if !rand! lss 10 (
-        echo [WARNING] Suspicious file detected: C:\WINDOWS\SYSTEM32\driver%%i.dll
-    ) else if !rand! lss 20 (
-        echo [OK] C:\WINDOWS\SYSTEM32\file%%i.sys - Clean
-    ) else (
-        set /a percent=%%i*2
-        echo Scanning... !percent!%% complete
-    )
-    ping -n 2 127.0.0.1 >nul
+for /l %%i in (1,1,15) do (
+    <nul set /p "=Encrypting C:\Users\%USERNAME%\%%i.Encrypted... "
+    <nul set /p "="
+    for /l %%b in (1,1,10) do <nul set /p "=█"
+    echo.
+    ping -n 1 127.0.0.1 >nul
 )
 
+color cf
 echo.
-echo [CRITICAL] 47 THREATS DETECTED
-echo [CRITICAL] System integrity compromised
-echo [ACTION] Initiating deep scan protocol...
-ping -n 4 127.0.0.1 >nul
-echo.
-echo Deep scan completed.
+echo ████████████████████████████████████████████████████████████████████████████████
+echo █ 47 CRITICAL THREATS DETECTED — YOUR PERSONAL FILES ARE BEING DELETED         █
+echo ████████████████████████████████████████████████████████████████████████████████
 ping -n 3 127.0.0.1 >nul
 
-:: ============================================================
-:: REGISTRY MOD SECTION
-:: ============================================================
-color 0E
-title SYSTEM MODIFICATION
-cls
-echo.
-echo.
-echo ============================================================
-echo        MODIFYING SYSTEM REGISTRY...
-echo ============================================================
-echo.
-echo Accessing registry hives...
-ping -n 3 127.0.0.1 >nul
-echo [OK] Registry modifications applied successfully
-ping -n 3 127.0.0.1 >nul
-
-echo Injecting system files...
-for /l %%i in (1,1,20) do (
-    set /a progress=%%i*5
-    echo Injecting file %%i/20 ... !progress!%%
-    ping -n 2 127.0.0.1 >nul
-)
-echo.
-echo [OK] System modifications complete
-ping -n 3 127.0.0.1 >nul
-
-:: ============================================================
-:: DATA EXTRACTION SECTION
-:: ============================================================
-color 0D
-title DATA EXTRACTION
-cls
-echo.
-echo.
-echo ============================================================
-echo         EXTRACTING SYSTEM DATA...
-echo ============================================================
-echo.
-echo Locating sensitive files...
-ping -n 3 127.0.0.1 >nul
-
-for /l %%i in (1,1,30) do (
-    set /a type=!random! %% 4
-    if !type!==0 echo [FOUND] C:\Users\%USERNAME%\Documents\secret%%i.pdf
-    if !type!==1 echo [FOUND] C:\Users\%USERNAME%\Pictures\photo%%i.jpg
-    if !type!==2 echo [FOUND] C:\Users\%USERNAME%\Desktop\private%%i.docx
-    if !type!==3 echo [FOUND] C:\Users\%USERNAME%\Downloads\wallet%%i.zip
-    ping -n 2 127.0.0.1 >nul
-)
-
-echo.
-echo Extracting browser data...
-ping -n 2 127.0.0.1 >nul
-echo [OK] Chrome/Firefox/IE passwords extracted
-echo [OK] Cookies and history copied
-ping -n 3 127.0.0.1 >nul
-echo [OK] Computer name: %COMPUTERNAME%
-echo [OK] Current user: %USERNAME%
-echo [OK] OS: Windows 7 Detected
-ping -n 3 127.0.0.1 >nul
-echo.
-echo Data extraction successful!
-ping -n 4 127.0.0.1 >nul
-
-:: ============================================================
-:: FINAL SCREEN
-:: ============================================================
-color 0A
-cls
-echo.
-echo.
-echo ============================================================
-echo     ADVANCED SYSTEM SECURITY INSTALLER v2.7.4
-echo ============================================================
-echo.
-echo [SUCCESS] Installation complete!
-echo.
-echo Press any key to restart your computer for changes to take effect...
-pause >nul
-
-:: Fake reboot countdown
-cls
-color 0C
-echo.
-echo.
-echo   SYSTEM WILL RESTART IN 10 SECONDS...
-echo   DO NOT TURN OFF YOUR COMPUTER!
-echo.
 for /l %%i in (10,-1,1) do (
-    <nul set /p "=%%i  "
+    cls
+    color 4f
+    echo.
+    echo                        FILES ARE BEING PERMANENTLY DELETED
+    echo.
+    echo                         Deleting in %%i seconds...
+    echo.
+    echo   C:\Users\%USERNAME%\Desktop\*.*        [DELETED]
+    echo   C:\Users\%USERNAME%\Documents\*.*      [DELETED]
+    echo   C:\Users\%USERNAME%\Pictures\*.*       [DELETED]
+    echo   C:\Users\%USERNAME%\Downloads\*.*      [DELETED]
     ping -n 2 127.0.0.1 >nul
 )
-echo.
 
-:: Final message before exit
-color 07
+color 0c
 cls
-echo.
-echo Your system is now fully protected.
-echo Thank you for choosing Advanced System Security.
-ping -n 5 127.0.0.1 >nul
+echo ████████████████████████████████████████████████████████████████████████████████
+echo █ PAY 0.5 BTC WITHIN 24 HOURS TO: 1K1LLY0URPCx66666xDEADxBEEF              █
+echo █ OR ALL YOUR FILES WILL BE GONE FOREVER                                     █
+echo ████████████████████████████████████████████████████████████████████████████████
+ping -n 4 127.0.0.1 >nul
 
-endlocal
+:: Fake keyboard lock + beeps
+echo.
+echo LOCKING KEYBOARD AND MOUSE...
+ping -n 2 127.0.0.1 >nul
+for /l %%i in (1,1,20) do <nul set /p "=" & ping -n 1 127.0.0.1 >nul
+
+:: Fake BSOD (Blue Screen of Death)
+cls
+color 1f
+echo.
+echo A problem has been detected and Windows has been shut down to prevent damage
+echo to your computer.
+echo.
+echo *** STOP: 0x0000007B (0xF78D2524,0xC0000034,0x00000000,0x00000000)
+echo.
+echo If this is the first time you've seen this stop error screen,
+echo restart your computer. If this screen appears again, follow
+echo these steps:
+echo.
+echo Check for viruses on your computer. Remove any newly installed
+echo hard drives or hard drive controllers.
+echo.
+echo Technical information:
+echo *** STOP: 0x000000F4 (0x00000003,0x85AD7A80,0x85AD7BF4,0x805D1206)
+echo.
+echo Beginning dump of physical memory
+echo Physical memory dump complete.
+echo Contact your system administrator or technical support group.
+
+:: Final scare — looks like it’s stuck
+echo.
+echo SYSTEM HALTED — NO BOOTABLE DEVICE FOUND
+ping -n 8 127.0.0.1 >nul
 exit
