@@ -27,28 +27,28 @@ for /l %%i in (1,1,30) do (
     ) else (
         echo      [FOUND] C:\Users\%USERNAME%\Downloads\item%%i.zip
     )
-    timeout /t 0.15 /nobreak >nul
+    ping 127.0.0.1 -n 2 >nul
 )
 
 echo.
 echo      Extracting browser data...
 timeout /t 1 /nobreak >nul
 echo      [OK] Browser history extracted
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Saved passwords located
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Cookies copied
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 echo.
 echo      Compiling system information...
 timeout /t 1 /nobreak >nul
 echo      [OK] System hostname: %COMPUTERNAME%
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] User account: %USERNAME%
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Windows version: Windows 7
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 echo.
 echo      [OK] Data extraction complete

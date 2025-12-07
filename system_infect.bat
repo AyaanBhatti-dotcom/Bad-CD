@@ -17,18 +17,18 @@ echo      [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
 echo      Modifying registry entries...
 timeout /t 1 /nobreak >nul
 echo      [OK] Registry entry modified: HKLM\SOFTWARE\...
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Registry entry modified: HKCU\Software\...
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Registry entry modified: HKLM\SYSTEM\CurrentControlSet\...
-timeout /t 0.5 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 echo.
 echo      Injecting system files...
 for /l %%i in (1,1,20) do (
     set /a progress=%%i * 5
     echo      Injecting file %%i/20... !progress!%%
-    timeout /t 0.2 /nobreak >nul
+    ping 127.0.0.1 -n 2 >nul
 )
 
 echo.

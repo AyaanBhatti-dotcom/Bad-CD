@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 title System Security Installation
 color 0A
 mode con: cols=80 lines=30

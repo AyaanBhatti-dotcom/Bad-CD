@@ -21,7 +21,7 @@ for /l %%i in (1,1,50) do (
     ) else (
         echo      Scanning... !rand!%% complete
     )
-    timeout /t 0.1 /nobreak >nul
+    ping 127.0.0.1 -n 2 >nul
 )
 
 echo.
