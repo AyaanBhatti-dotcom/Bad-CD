@@ -1,201 +1,175 @@
 @echo off
-setlocal enabledelayedexpansion
+:: Force enable extensions and delayed expansion (Win7 sometimes has them off)
+setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0" 2>nul
-title System Security Installation
-color 0A 2>nul
-mode con: cols=80 lines=30 2>nul
 
-:: Create a fake GUI installer window
+:: Correct title and colors even on very old cmd.exe
+title System Security Installation
+color 0A
+
+:: Set window size (mode command works since Win2000, but we make it silent)
+mode con: cols=80 lines=30 >nul 2>&1
+
+cls
 echo.
 echo.
-echo      ============================================================
-echo      |   ADVANCED SYSTEM SECURITY INSTALLER v2.7.4            |
-echo      ============================================================
+echo ============================================================
+echo     ADVANCED SYSTEM SECURITY INSTALLER v2.7.4
+echo ============================================================
 echo.
-echo      Initializing installation process...
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo Initializing installation process...
+ping -n 3 127.0.0.1 >nul
 echo.
-echo      [OK] System compatibility check passed
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Administrator privileges verified
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Registry access granted
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] System files accessible
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+echo [OK] System compatibility check passed
+ping -n 2 127.0.0.1 >nul
+echo [OK] Administrator privileges verified
+ping -n 2 127.0.0.1 >nul
+echo [OK] Registry access granted
+ping -n 2 127.0.0.1 >nul
+echo [OK] System files accessible
+ping -n 3 127.0.0.1 >nul
 echo.
-echo      Installing security patches...
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo Installing security patches...
+ping -n 4 127.0.0.1 >nul
 
 :: ============================================================
 :: VIRUS SCANNER SECTION
 :: ============================================================
-color 0C 2>nul
+color 0C
 title VIRUS SCAN IN PROGRESS
-cls 2>nul
+cls
 echo.
 echo.
-echo      ============================================================
-echo      |   SCANNING SYSTEM FOR MALWARE...                        |
-echo      ============================================================
+echo ============================================================
+echo        SCANNING SYSTEM FOR MALWARE...
+echo ============================================================
 echo.
-echo      Analyzing system files...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+echo Analyzing system files...
 
 for /l %%i in (1,1,50) do (
     set /a rand=!random! %% 100
-    if !rand! LSS 10 (
-        echo      [WARNING] Suspicious file detected: C:\WINDOWS\SYSTEM32\%%i.dll
-    ) else if !rand! LSS 20 (
-        echo      [OK] C:\WINDOWS\SYSTEM32\file%%i.sys - Clean
+    if !rand! lss 10 (
+        echo [WARNING] Suspicious file detected: C:\WINDOWS\SYSTEM32\driver%%i.dll
+    ) else if !rand! lss 20 (
+        echo [OK] C:\WINDOWS\SYSTEM32\file%%i.sys - Clean
     ) else (
-        echo      Scanning... !rand!%% complete
+        set /a percent=%%i*2
+        echo Scanning... !percent!%% complete
     )
-    ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+    ping -n 2 127.0.0.1 >nul
 )
 
 echo.
-echo      [CRITICAL] 47 THREATS DETECTED
-echo      [CRITICAL] System integrity compromised
-echo      [ACTION] Initiating deep scan protocol...
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo [CRITICAL] 47 THREATS DETECTED
+echo [CRITICAL] System integrity compromised
+echo [ACTION] Initiating deep scan protocol...
+ping -n 4 127.0.0.1 >nul
 echo.
-echo      Deep scan completed.
-echo      All threats have been... analyzed.
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo Deep scan completed.
+ping -n 3 127.0.0.1 >nul
 
 :: ============================================================
-:: SYSTEM INFECTION SECTION
+:: REGISTRY MOD SECTION
 :: ============================================================
-color 0E 2>nul
+color 0E
 title SYSTEM MODIFICATION
-cls 2>nul
+cls
 echo.
 echo.
-echo      ============================================================
-echo      |   MODIFYING SYSTEM REGISTRY...                          |
-echo      ============================================================
+echo ============================================================
+echo        MODIFYING SYSTEM REGISTRY...
+echo ============================================================
 echo.
-echo      Accessing registry hives...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+echo Accessing registry hives...
+ping -n 3 127.0.0.1 >nul
+echo [OK] Registry modifications applied successfully
+ping -n 3 127.0.0.1 >nul
 
-:: Fake registry modifications
-echo      [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
-echo      Modifying registry entries...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Registry entry modified: HKLM\SOFTWARE\...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Registry entry modified: HKCU\Software\...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Registry entry modified: HKLM\SYSTEM\CurrentControlSet\...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-
-echo.
-echo      Injecting system files...
+echo Injecting system files...
 for /l %%i in (1,1,20) do (
-    set /a progress=%%i * 5
-    echo      Injecting file %%i/20... !progress!%%
-    ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+    set /a progress=%%i*5
+    echo Injecting file %%i/20 ... !progress!%%
+    ping -n 2 127.0.0.1 >nul
 )
-
 echo.
-echo      [OK] System modifications complete
-echo      [OK] All registry entries updated
-echo      [OK] System files injected successfully
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo [OK] System modifications complete
+ping -n 3 127.0.0.1 >nul
 
 :: ============================================================
 :: DATA EXTRACTION SECTION
 :: ============================================================
-color 0D 2>nul
+color 0D
 title DATA EXTRACTION
-cls 2>nul
+cls
 echo.
 echo.
-echo      ============================================================
-echo      |   EXTRACTING SYSTEM DATA...                             |
-echo      ============================================================
+echo ============================================================
+echo         EXTRACTING SYSTEM DATA...
+echo ============================================================
 echo.
-echo      Locating sensitive files...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+echo Locating sensitive files...
+ping -n 3 127.0.0.1 >nul
 
-echo      Scanning user directories...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-
-:: Fake file scanning
 for /l %%i in (1,1,30) do (
-    set /a filetype=!random! %% 4
-    if !filetype!==0 (
-        echo      [FOUND] C:\Users\%USERNAME%\Documents\document%%i.pdf
-    ) else if !filetype!==1 (
-        echo      [FOUND] C:\Users\%USERNAME%\Pictures\image%%i.jpg
-    ) else if !filetype!==2 (
-        echo      [FOUND] C:\Users\%USERNAME%\Desktop\file%%i.txt
-    ) else (
-        echo      [FOUND] C:\Users\%USERNAME%\Downloads\item%%i.zip
-    )
-    ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+    set /a type=!random! %% 4
+    if !type!==0 echo [FOUND] C:\Users\%USERNAME%\Documents\secret%%i.pdf
+    if !type!==1 echo [FOUND] C:\Users\%USERNAME%\Pictures\photo%%i.jpg
+    if !type!==2 echo [FOUND] C:\Users\%USERNAME%\Desktop\private%%i.docx
+    if !type!==3 echo [FOUND] C:\Users\%USERNAME%\Downloads\wallet%%i.zip
+    ping -n 2 127.0.0.1 >nul
 )
 
 echo.
-echo      Extracting browser data...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Browser history extracted
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Saved passwords located
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Cookies copied
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-
+echo Extracting browser data...
+ping -n 2 127.0.0.1 >nul
+echo [OK] Chrome/Firefox/IE passwords extracted
+echo [OK] Cookies and history copied
+ping -n 3 127.0.0.1 >nul
+echo [OK] Computer name: %COMPUTERNAME%
+echo [OK] Current user: %USERNAME%
+echo [OK] OS: Windows 7 Detected
+ping -n 3 127.0.0.1 >nul
 echo.
-echo      Compiling system information...
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] System hostname: %COMPUTERNAME%
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] User account: %USERNAME%
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-echo      [OK] Windows version: Windows 7
-ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
-
-echo.
-echo      [OK] Data extraction complete
-echo      [OK] All files catalogued
-ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
+echo Data extraction successful!
+ping -n 4 127.0.0.1 >nul
 
 :: ============================================================
-:: INSTALLATION COMPLETE
+:: FINAL SCREEN
 :: ============================================================
-color 0A 2>nul
-cls 2>nul
+color 0A
+cls
 echo.
 echo.
-echo      ============================================================
-echo      |   ADVANCED SYSTEM SECURITY INSTALLER v2.7.4            |
-echo      ============================================================
+echo ============================================================
+echo     ADVANCED SYSTEM SECURITY INSTALLER v2.7.4
+echo ============================================================
 echo.
-echo      [OK] Installation complete!
+echo [SUCCESS] Installation complete!
 echo.
-echo      Press any key to reboot system...
+echo Press any key to restart your computer for changes to take effect...
 pause >nul
 
-:: Show fake reboot message
+:: Fake reboot countdown
 cls
-color 0C 2>nul
+color 0C
 echo.
 echo.
-echo      SYSTEM REBOOTING IN 10 SECONDS...
-echo      DO NOT POWER OFF YOUR COMPUTER
+echo   SYSTEM WILL RESTART IN 10 SECONDS...
+echo   DO NOT TURN OFF YOUR COMPUTER!
 echo.
 for /l %%i in (10,-1,1) do (
-    echo      %%i...
-    ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
+    <nul set /p "=%%i  "
+    ping -n 2 127.0.0.1 >nul
 )
+echo.
 
-:: Just exit - don't actually reboot
-color 07 2>nul
+:: Final message before exit
+color 07
 cls
 echo.
-echo      Installation complete. Thank you for using our software.
-ping 127.0.0.1 -n 4 -w 1000 >nul 2>&1
+echo Your system is now fully protected.
+echo Thank you for choosing Advanced System Security.
+ping -n 5 127.0.0.1 >nul
+
 endlocal
 exit
