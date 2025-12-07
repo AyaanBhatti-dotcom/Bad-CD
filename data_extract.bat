@@ -54,4 +54,6 @@ echo.
 echo      [OK] Data extraction complete
 echo      [OK] All files catalogued
 ping 127.0.0.1 -n 3 >nul 2>&1
+endlocal
+exit /b
 
