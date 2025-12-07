@@ -60,4 +60,3 @@ echo.
 echo      Installation complete. Thank you for using our software.
 ping 127.0.0.1 -n 4 >nul 2>&1
 exit
-
