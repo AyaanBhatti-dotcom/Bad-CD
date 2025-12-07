@@ -10,10 +10,10 @@ echo      |   EXTRACTING SYSTEM DATA...                             |
 echo      ============================================================
 echo.
 echo      Locating sensitive files...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 echo      Scanning user directories...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 :: Fake file scanning
 for /l %%i in (1,1,30) do (
@@ -32,7 +32,7 @@ for /l %%i in (1,1,30) do (
 
 echo.
 echo      Extracting browser data...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Browser history extracted
 ping 127.0.0.1 -n 2 >nul
 echo      [OK] Saved passwords located
@@ -42,7 +42,7 @@ ping 127.0.0.1 -n 2 >nul
 
 echo.
 echo      Compiling system information...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] System hostname: %COMPUTERNAME%
 ping 127.0.0.1 -n 2 >nul
 echo      [OK] User account: %USERNAME%
@@ -53,6 +53,6 @@ ping 127.0.0.1 -n 2 >nul
 echo.
 echo      [OK] Data extraction complete
 echo      [OK] All files catalogued
-timeout /t 2 /nobreak >nul
+ping 127.0.0.1 -n 3 >nul
 exit
 

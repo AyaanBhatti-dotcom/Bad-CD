@@ -10,7 +10,7 @@ echo      |   SCANNING SYSTEM FOR MALWARE...                        |
 echo      ============================================================
 echo.
 echo      Analyzing system files...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 for /l %%i in (1,1,50) do (
     set /a rand=!random! %% 100
@@ -28,10 +28,10 @@ echo.
 echo      [CRITICAL] 47 THREATS DETECTED
 echo      [CRITICAL] System integrity compromised
 echo      [ACTION] Initiating deep scan protocol...
-timeout /t 2 /nobreak >nul
+ping 127.0.0.1 -n 3 >nul
 echo.
 echo      Deep scan completed.
 echo      All threats have been... analyzed.
-timeout /t 2 /nobreak >nul
+ping 127.0.0.1 -n 3 >nul
 exit
 

@@ -10,12 +10,12 @@ echo      |   MODIFYING SYSTEM REGISTRY...                          |
 echo      ============================================================
 echo.
 echo      Accessing registry hives...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 
 :: Fake registry modifications
 echo      [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
 echo      Modifying registry entries...
-timeout /t 1 /nobreak >nul
+ping 127.0.0.1 -n 2 >nul
 echo      [OK] Registry entry modified: HKLM\SOFTWARE\...
 ping 127.0.0.1 -n 2 >nul
 echo      [OK] Registry entry modified: HKCU\Software\...
@@ -35,6 +35,6 @@ echo.
 echo      [OK] System modifications complete
 echo      [OK] All registry entries updated
 echo      [OK] System files injected successfully
-timeout /t 2 /nobreak >nul
+ping 127.0.0.1 -n 3 >nul
 exit
 
