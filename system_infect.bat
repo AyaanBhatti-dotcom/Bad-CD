@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
-color 0E
+color 0E 2>nul
 title SYSTEM MODIFICATION
-cls
+cls 2>nul
 echo.
 echo.
 echo      ============================================================
@@ -10,34 +10,31 @@ echo      |   MODIFYING SYSTEM REGISTRY...                          |
 echo      ============================================================
 echo.
 echo      Accessing registry hives...
-ping 127.0.0.1 -n 2 >nul 2>&1
+ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 
 :: Fake registry modifications
 echo      [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
 echo      Modifying registry entries...
-ping 127.0.0.1 -n 2 >nul 2>&1
+ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 echo      [OK] Registry entry modified: HKLM\SOFTWARE\...
-ping 127.0.0.1 -n 2 >nul 2>&1
+ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 echo      [OK] Registry entry modified: HKCU\Software\...
-ping 127.0.0.1 -n 2 >nul 2>&1
+ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 echo      [OK] Registry entry modified: HKLM\SYSTEM\CurrentControlSet\...
-ping 127.0.0.1 -n 2 >nul 2>&1
+ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 
 echo.
 echo      Injecting system files...
 for /l %%i in (1,1,20) do (
     set /a progress=%%i * 5
     echo      Injecting file %%i/20... !progress!%%
-    ping 127.0.0.1 -n 2 >nul 2>&1
+    ping 127.0.0.1 -n 2 -w 1000 >nul 2>&1
 )
 
 echo.
 echo      [OK] System modifications complete
 echo      [OK] All registry entries updated
 echo      [OK] System files injected successfully
-ping 127.0.0.1 -n 3 >nul 2>&1
-endlocal
-exit /b
-
+ping 127.0.0.1 -n 3 -w 1000 >nul 2>&1
 endlocal
 exit /b
